@@ -34,7 +34,7 @@ void curlTask( void *pvParameters )
                         for(j = curlPrev; j <= curl; j++)
                         {
                             PDC3 = (173 + j);
-                            for(j = 0; j < 100; j++);
+                            for(j = 0; j < 1000; j++);
                        //     vTaskDelay(10);
                         }
                         curlPrev = curl;
@@ -45,7 +45,7 @@ void curlTask( void *pvParameters )
                         for(k = curlPrev; k > curl; k--)
                         {
                             PDC3 = (173 + k);
-                            for(j = 0; j < 100; j++);
+                            for(j = 0; j < 1000; j++);
                        //     vTaskDelay(10);
                         }
                         curlPrev = curl;
