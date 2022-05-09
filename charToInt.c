@@ -4,7 +4,8 @@
  *
  * Created on September 21, 2021, 7:13 PM
  */
-   
+#include "main.h"
+
 int charToInt(char d2, char d1, char d0)
 {
     int integer = 0, negative = 0;

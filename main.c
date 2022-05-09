@@ -47,29 +47,37 @@
 #include "queue.h"
 #include "croutine.h"
 #include "FreeRTOSConfig.h"
-//#include "main.h"
+#include "main.h"
 
 volatile char rxval[20];
-int i = 0;
-int j = 0;
-void init(void);
-void boomTask(void *pvParameters);
-void curlTask(void *pvParameters);
-int charToInt(char digit2, char digit1, char digit0);
+int x = 0;
+void __attribute__((__interrupt__, auto_psv)) _U2RXInterrupt(void)             
+{
+    IFS1bits.U2RXIF = 0;
+    rxval[x] = U2RXREG;
+    x++;
+    if(x == 20)
+    {  
+        x = 0;
+    }
+    return;
+ }
 void __attribute__((__interrupt__, auto_psv)) _DefaultInterrupt(void)
 {
-    if(IFS0bits.T1IF)
-    {
-        IFS0bits.T1IF = 0;
-    }
     return;
 }
 
 void main(void) {
+    int i = 0;
+    for(i = 0; i < 20; i++)
+    {
+        rxval[i] = 0;
+    }
     init();
+    
 	/* Create the test tasks defined within this file. */
-	xTaskCreate( boomTask, "Boom", 105, NULL, 1, NULL );
-    xTaskCreate( curlTask, "Curl", 105, NULL, 1, NULL );
+//	xTaskCreate( boomTask, "Boom", 512, NULL, 1, NULL );
+    xTaskCreate( curlTask, "Curl", 512, NULL, 1, NULL );
 	/* Finally start the scheduler. */
 	vTaskStartScheduler();
 

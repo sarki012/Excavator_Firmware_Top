@@ -25,36 +25,8 @@ void init(void)
     RPINR18 = 0b0000000000100110;       //U1RX = RP38
     RPINR19 = 0b0000000000100101;       //U2RX = RP37 
     RPOR3 = 0b0000001100000001;     // U2TX = RP41, U1_TX = RP40
-    /*
-    TRISBbits.TRISB9 = 0;       //TX
-    TRISBbits.TRISB8 = 1;       //RX
-    TRISBbits.TRISB4 = 0;      //SW Buttonfor motor board
-    TRISAbits.TRISA2 = 0;      //Wakeup for motor board
-    TRISAbits.TRISA3 = 0;       //EAN for motor board
-    TRISAbits.TRISA0 = 0;       //P2_0  for motor board
-    TRISAbits.TRISA1 = 0;      //P2_4 for motor board
-    LATBbits.LATB4 = 1;        //SW button  = On for motor board
-    
-    TRISBbits.TRISB2 = 0;       //Left direction
-    TRISBbits.TRISB3 = 0;       //Right direction
-    TRISBbits.TRISB11 = 0;      //MS1   Full Step
-    TRISBbits.TRISB10 = 0;      //MS2   Full Step
-    
-    ANSELA=0;
-    ANSELB=0;
-     * */
-    /*
-    TRISBbits.TRISB7 = 0;         //TX
-    TRISBbits.TRISB8 = 1;       //RX
-    TRISBbits.TRISB11 = 0;      //SW Button for EMG board
-    TRISBbits.TRISB12 = 0;       //Wakeup for EMG board
-    TRISBbits.TRISB2 = 0;         //EAN for EMG board
-    TRISBbits.TRISB14 = 0;      //P2_0 for EMG board
-    TRISBbits.TRISB3 = 0;       //P2_4 for EMG board
-    */
-   // Servo Circuit Board Config
-    
-    /*
+
+   // Servo Circuit Board Config 
     TRISBbits.TRISB4 = 0;       //EAN
     TRISBbits.TRISB1 = 0;       //P2_4
     TRISBbits.TRISB0 = 0;       //P2_0
@@ -83,8 +55,8 @@ void init(void)
     U2MODEbits.RTSMD = 0;   // Bit11 Simplex Mode
     U2MODEbits.PDSEL0 = 0;      
     U2MODEbits.STSEL = 0;       //One stop bit 
-    INTCON2bits.GIE = 0;        //Global interrupt enable bit (disabled)
-    IEC1bits.U2RXIE = 0;        //UART 2 interrupt disabled 
+    INTCON2bits.GIE = 1;        //Global interrupt enable bit (disabled)
+    IEC1bits.U2RXIE = 1;        //UART 2 interrupt disabled 
     IFS1bits.U2RXIF = 0;       //Reset RX interrupt flag 
     IPC7bits.U2RXIP = 7;        //Set RX interrupt priority to high priority
     U2STAbits.URXISEL1 = 0;     //Interrupt is set when there is 1 char
@@ -234,13 +206,8 @@ void init(void)
     
  //   TRGCON1bits.TRGDIV = 7;     //Trigger output for every 8th trigger event
  //   TRGCON2bits.TRGDIV = 7;     //Trigger output for every 8th trigger event
-  //  PTCONbits.PTEN = 1;         //PWM Module is enabled
-    IEC1 = 0;
-    IEC2 = 0;
-    IEC3 = 0;
-    IEC4 = 0;
-    IEC8 = 0;
-    IEC9 = 0;
-*/
+    PTCONbits.PTEN = 1;         //PWM Module is enabled
+
+
     return;
 }
